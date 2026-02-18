@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\TestTableRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -16,7 +17,7 @@ class TestController extends AbstractController
     }
 
     #[Route('/api/test', name: 'test', methods: ['GET'])]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $records = $this->testTableRepository->findAll();
 

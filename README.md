@@ -53,6 +53,26 @@ docker compose up -d --build
 - PostgreSQL: `localhost:5432` (db/user/pass: `app` / `app` / `app`)
 - Redis: `localhost:6379`
 
+---
+
+## ⚠️ Обязательно: выполнить миграции базы данных
+
+После первого запуска контейнеров нужно создать БД (если её нет) и выполнить миграции.
+
+```bash
+docker compose exec php php bin/console doctrine:database:create --if-not-exists
+```
+
+```bash
+docker compose exec php php bin/console doctrine:migrations:migrate
+```
+
+Если миграции уже применены — команда просто сообщит об этом.
+
+⚠️ Без выполнения миграций приложение может падать с ошибками отсутствующих таблиц.
+
+---
+
 ### 4) Остановка
 
 ```bash
