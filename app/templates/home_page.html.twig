@@ -1,0 +1,15 @@
+<h1>АБОБА <button>{{ aboba|upper }}</button> </h1>
+{% for i in 0..9 %}
+    {% for color in ["red", "green", "blue"] %}
+        <button style="background-color: {{ color }}; color: red">
+            {% if color === "blue" %}
+                {{ aboba|upper }}
+            {% elseif color === "green" %}
+                {{ aboba|lower }}
+            {% else %}
+                ХЕХЕХЕХЕХЕ
+            {% endif %}
+        </button>
+    {% endfor %}
+    <br>
+{% endfor %}
