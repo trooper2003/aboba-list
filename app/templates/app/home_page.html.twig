@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Приветики {% endblock %}
+
+{% block body %}
+    <h1>АБОБА <button>{{ aboba|upper }}</button> </h1>
+    {% for i in 0..9 %}
+        {% for color in ["red", "green", "blue"] %}
+            <a class="button" style="background-color: {{ color }}; color: red" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1">
+                {% if color === "blue" %}
+                    {{ aboba|upper }}
+                {% elseif color === "green" %}
+                    {{ aboba|lower }}
+                {% else %}
+                    ХЕХЕХЕХЕХЕ
+                {% endif %}
+            </a>
+        {% endfor %}
+        <br>
+    {% endfor %}
+{% endblock %}

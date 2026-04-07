@@ -28,6 +28,6 @@ class TestController extends AbstractController
     public function appHomePage(Request $request): Response
     {
         $aboba = 'Квазибоба';
-        return $this->render('home_page.html.twig', ['aboba' => $aboba]);
+        return $this->render('app/home_page.html.twig', ['aboba' => $aboba]);
     }
 }
