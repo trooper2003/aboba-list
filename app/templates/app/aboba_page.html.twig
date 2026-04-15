@@ -3,7 +3,17 @@
 {% block title %} Абоба {{ id }} {% endblock %}
 
 {% block body %}
-    <h1>Абоба номер {{ id }}</h1>
-    <p>Имя: {{ aboba.name }}</p>
-    <p>Возраст: {{ aboba.age }}</p>
+    <h1 class="aboba-title">Абоба номер {{ id }}</h1>
+    <table class="aboba-table">
+        <tbody>
+            <tr>
+                <th>Имя:</th>
+                <td>{{ aboba.name }}</td>
+            </tr>
+            <tr>
+                <th>Возраст:</th>
+                <td>{{ aboba.age }}</td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}
