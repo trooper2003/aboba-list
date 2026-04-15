@@ -5,6 +5,7 @@ namespace App\Model;
 class Aboba
 {
     public function __construct(
+        private int $id,
         private string $name,
         private int $age
     )  {
@@ -20,4 +21,11 @@ class Aboba
     {
         return $this->age;
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+
 }
