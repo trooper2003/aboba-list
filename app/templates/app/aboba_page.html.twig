@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Абоба {{ id }} {% endblock %}
+
+{% block body %}
+    <h1>Абоба номер {{ id }}</h1>
+    <p>Имя: {{ aboba.name }}</p>
+    <p>Возраст: {{ aboba.age }}</p>
+{% endblock %}
