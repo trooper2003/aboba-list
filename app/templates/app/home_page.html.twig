@@ -3,14 +3,14 @@
 {% block title %} Приветики {% endblock %}
 
 {% block body %}
-    <h1>АБОБА <button>{{ aboba|upper }}</button> </h1>
-    {% for i in 0..9 %}
+    <h1>АБОБА</h1>
+    {% for obj in aboba %}
         {% for color in ["red", "green", "blue"] %}
-            <a class="button" style="background-color: {{ color }}; color: red" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1">
+            <a class="button" style="background-color: {{ color }}; color: red" href="{{ path('app_aboba_page', {id: obj.id }) }}">
                 {% if color === "blue" %}
-                    {{ aboba|upper }}
+                    {{ obj.name|upper }}
                 {% elseif color === "green" %}
-                    {{ aboba|lower }}
+                    {{ obj.name|lower }}
                 {% else %}
                     ХЕХЕХЕХЕХЕ
                 {% endif %}
