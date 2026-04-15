@@ -6,7 +6,7 @@
     <h1>АБОБА</h1>
     {% for obj in aboba %}
         {% for color in ["red", "green", "blue"] %}
-            <a class="button" style="background-color: {{ color }}; color: red" href="{{ path('app_aboba_page', {id: obj.id }) }}">
+            <a class="button" style="background-color: {{ color }}; color: #f4ef00" href="{{ path('app_aboba_page', {id: obj.id }) }}">
                 {% if color === "blue" %}
                     {{ obj.name|upper }}
                 {% elseif color === "green" %}
