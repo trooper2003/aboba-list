@@ -4,23 +4,3 @@ body {
     background-color: #73306d;
 }
 
-.logo-img {
-    width: 200px;
-    height: auto;
-    object-fit: contain;
-}
-
-.aboba-title {
-    color: #ff7500;
-}
-
-.aboba-table, .aboba-table td, .aboba-table th {
-    border-collapse: collapse;
-    color: yellow;
-    border: 2px solid #ff7500;
-}
-
-.aboba-link {
-    color: yellow;
-    text-decoration: none;
-}

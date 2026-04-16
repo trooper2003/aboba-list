@@ -68,6 +68,23 @@ services:
     volumes:
       - rabbit_data:/var/lib/rabbitmq
 
+  tailwind:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1001}
+    container_name: symfony_tailwind
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - ./app:/var/www/app
+    command: [ "php", "bin/console", "tailwind:build", "--watch" ]
+    depends_on:
+      - php
+
 volumes:
   pg_data:
   rabbit_data:
+
+

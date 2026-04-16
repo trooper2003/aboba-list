@@ -18,8 +18,8 @@
         <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
         {% endif %}
     </head>
-    <body>
-        <img src="{{ asset('images/aboba_logo.png') }}" class="logo-img" alt="Aboba logo">
+    <body class="min-h-screen flex flex-col items-center">
+        <img src="{{ asset('images/aboba_logo.png') }}" class="w-auto h-20 my-3" alt="Aboba logo">
         {% block body %}{% endblock %}
     </body>
 </html>
