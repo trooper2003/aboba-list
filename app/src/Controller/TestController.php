@@ -34,7 +34,7 @@ class TestController extends AbstractController
     public function appHomePage(Request $request, AbobaRepository $aboba): Response
     {
         $abobaArray = $aboba->getAll();
-        return $this->render('app/home_page.html.twig', ['aboba' => $abobaArray]);
+        return $this->render('app/homepage.html.twig', ['aboba' => $abobaArray]);
     }
 
     #[Route('/api/aboba/{id<\d+>}', name: 'app_aboba_get', methods: ['GET'])]
@@ -52,7 +52,7 @@ class TestController extends AbstractController
             throw $this->createNotFoundException('Aboba not found');
         }
 
-        return $this->render('app/aboba_page.html.twig', ['aboba' => $currentAboba, 'id' => $id]);
+        return $this->render('app/abobaPage.html.twig', ['aboba' => $currentAboba, 'id' => $id]);
     }
 }
 
