@@ -19,16 +19,16 @@ class MainController extends AbstractController
     {
     }
 
-    #[Route('/api/test', name: 'test', methods: ['GET'])]
-    public function index(Request $request, AbobaRepository $aboba): Response
-    {
-        //        $records = $this->testTableRepository->findAll();
-
-        //        return $this->json(['records' => $records], Response::HTTP_OK);
-
-        return $this->json($aboba->getAll());
-
-    }
+//    #[Route('/api/test', name: 'test', methods: ['GET'])]
+//    public function index(Request $request, AbobaRepository $aboba): Response
+//    {
+//        //        $records = $this->testTableRepository->findAll();
+//
+//        //        return $this->json(['records' => $records], Response::HTTP_OK);
+//
+//        return $this->json($aboba->getAll());
+//
+//    }
 
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
     public function appHomePage(Request $request, AbobaRepository $aboba): Response
