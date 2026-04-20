@@ -51,7 +51,6 @@ class TestController extends AbstractController
         if (!$currentAboba) {
             throw $this->createNotFoundException('Aboba not found');
         }
-
         return $this->render('app/abobaPage.html.twig', ['aboba' => $currentAboba, 'id' => $id]);
     }
 }

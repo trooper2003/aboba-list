@@ -7,7 +7,8 @@ class Aboba
     public function __construct(
         private int $id,
         private string $name,
-        private int $age
+        private int $age,
+        private MarriedStatusEnum $marriedStatus
     )  {
 
     }
@@ -27,5 +28,22 @@ class Aboba
         return $this->id;
     }
 
+    public function getMarriedStatusString(): string
+    {
+        return $this->marriedStatus->value;
+    }
+
+    public function getMarriedStatus(): MarriedStatusEnum
+    {
+        return $this->marriedStatus;
+    }
+
+    public function getMarriedStatusFilename(): string
+    {
+        return match ($this->marriedStatus) {
+            MarriedStatusEnum::MARRIED => 'images/status-married.png',
+            MarriedStatusEnum::NOT_MARRIED => 'images/status-not-married.png',
+        };
+    }
 
 }

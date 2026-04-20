@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Model\Aboba;
+use App\Model\MarriedStatusEnum;
 use Psr\Log\LoggerInterface;
 
 class AbobaRepository
@@ -12,9 +13,9 @@ class AbobaRepository
         $this->logger->info('All Aboba Repository');
 
         return [
-            new Aboba(0, 'Квазибоба', 12),
-            new Aboba(1, 'Адильбек', 48),
-            new Aboba(2, 'Андрюша', 120)
+            new Aboba(0, 'Квазибоба', 12, MarriedStatusEnum::MARRIED),
+            new Aboba(1, 'Адильбек', 48, MarriedStatusEnum::NOT_MARRIED),
+            new Aboba(2, 'Андрюша', 120, MarriedStatusEnum::MARRIED)
         ];
     }
 
