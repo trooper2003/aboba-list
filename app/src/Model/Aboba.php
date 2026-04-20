@@ -5,11 +5,13 @@ namespace App\Model;
 class Aboba
 {
     public function __construct(
-        private int $id,
-        private string $name,
-        private int $age,
-        private MarriedStatusEnum $marriedStatus
-    )  {
+        private int                         $id,
+        private string                      $name,
+        private int                         $age,
+        private MarriedStatusEnum           $marriedStatus,
+        private readonly \DateTimeImmutable $createdAt,
+    )
+    {
 
     }
 
@@ -46,4 +48,8 @@ class Aboba
         };
     }
 
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 }

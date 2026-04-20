@@ -19,14 +19,16 @@
                 </tr>
                 <tr>
                     <th class="text-orange-400 text-right font-black uppercase tracking-wider w-1/2">Семейное положение:</th>
-
                     <td class="font-light">
                         <div class="flex items-center gap-2">
                             <span>{{ aboba.MarriedStatusString }}</span>
                             <img class="w-auto h-21 object-contain border-2 p-1 border-orange-400 rounded-xl" src="{{ asset( aboba.MarriedStatusFilename ) }}">
-
                         </div>
                     </td>
+                </tr>
+                <tr>
+                    <th class="text-orange-400 text-right font-black uppercase tracking-wider w-1/2">Абоба создан:</th>
+                    <td class="font-light">{{ aboba.createdAt|date }}</td>
                 </tr>
                 </tbody>
             </table>
