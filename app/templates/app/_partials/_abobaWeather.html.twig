@@ -1,0 +1,18 @@
+<div class="inline-flex items-center space-x-3 text-white px-4 py-2 rounded-2xl shadow-sm border-3 border-orange-500">
+    <div class="flex items-center justify-center w-8 h-8 bg-orange-500 rounded-full text-lg">
+        🌡️
+    </div>
+
+    <div class="flex flex-col">
+        <span class="text-[10px] leading-none uppercase font-bold tracking-tighter">
+            {{ city|default('Hội An') }}
+        </span>
+        <span class="text-xl font-black leading-tight opacity-50">
+            {% if temp is not null %}
+                {{ temp }}°C
+            {% else %}
+                ??
+            {% endif %}
+        </span>
+    </div>
+</div>
