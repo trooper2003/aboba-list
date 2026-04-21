@@ -37,6 +37,7 @@ class MainController extends AbstractController
     {
         $abobaArray = $aboba->getAll();
         $temp = $weatherService->getCurrentTemperature();
+
         return $this->render('app/homepage.html.twig', ['aboba' => $abobaArray, 'temp' => $temp]);
     }
 }
