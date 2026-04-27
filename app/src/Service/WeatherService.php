@@ -6,18 +6,16 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class WeatherService
+readonly class WeatherService
 {
     public function __construct(
         private HttpClientInterface $httpClient,
-        private CacheInterface $cache,
+        private CacheInterface $weatherCache,
     ) {}
 
     public function getCurrentTemperature(): ?float
     {
-        return $this->cache->get('weather_temperature_hoian', function (ItemInterface $item) {
-            $item->expiresAfter(30);
-
+        return $this->weatherCache->get('weather_temperature_hoian', function (ItemInterface $item) {
             try {
                 return (float)$this->httpClient
                     ->request('GET', 'https://api.open-meteo.com/v1/forecast?latitude=15.87944&longitude=108.335&current=temperature_2m&timezone=Asia/Bangkok&temperature_unit=celsius')
