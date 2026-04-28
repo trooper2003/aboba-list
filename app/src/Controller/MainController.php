@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Aboba;
-use App\Repository\AbobaRepository;
+use App\Entity\Aboba;
 use App\Repository\TestTableRepository;
 use App\Service\WeatherService;
-use Psr\Log\LoggerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MainController extends AbstractController
 {
@@ -33,12 +30,16 @@ class MainController extends AbstractController
 //    }
 
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
-    public function appHomePage(AbobaRepository $aboba, WeatherService $weatherService): Response
+    public function appHomePage(EntityManagerInterface $em, WeatherService $weatherService): Response
     {
-        $abobaArray = $aboba->getAll();
+        $abobas = $em->createQueryBuilder()
+        ->select('a')
+        ->from(Aboba::class, 'a')
+        ->getQuery()
+        ->getResult();
         $temp = $weatherService->getCurrentTemperature();
 
-        return $this->render('app/homepage.html.twig', ['aboba' => $abobaArray, 'temp' => $temp]);
+        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
     }
 }
 
