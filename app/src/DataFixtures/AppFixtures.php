@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Aboba;
-use App\Model\MarriedStatusEnum;
+use App\Entity\MarriedStatusEnum;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
