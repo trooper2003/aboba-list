@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Aboba;
+use App\Repository\AbobaRepository;
 use App\Repository\TestTableRepository;
 use App\Service\WeatherService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,13 +31,9 @@ class MainController extends AbstractController
 //    }
 
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
-    public function appHomePage(EntityManagerInterface $em, WeatherService $weatherService): Response
+    public function appHomePage(AbobaRepository $abobaRepository, WeatherService $weatherService): Response
     {
-        $abobas = $em->createQueryBuilder()
-        ->select('a')
-        ->from(Aboba::class, 'a')
-        ->getQuery()
-        ->getResult();
+        $abobas = $abobaRepository->findAll();
         $temp = $weatherService->getCurrentTemperature();
 
         return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
