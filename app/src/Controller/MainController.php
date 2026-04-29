@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Aboba;
 use App\Entity\MarriedStatusEnum;
 use App\Repository\AbobaRepository;
 use App\Repository\TestTableRepository;
 use App\Service\WeatherService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -31,7 +29,8 @@ class MainController extends AbstractController
 //
 //    }
 
-    #[Route('/{marriedStatus}', name: 'app_home_page', methods: ['GET'])]
+    #[Route('/', name: 'app_home_page', methods: ['GET'])]
+    #[Route('/list/{marriedStatus}', name: 'app_home_page_filter', methods: ['GET'])]
     public function appHomePage(
         AbobaRepository    $abobaRepository,
         WeatherService     $weatherService,
@@ -46,23 +45,5 @@ class MainController extends AbstractController
 
         return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
     }
-
-//    #[Route('/married', name: 'app_married', methods: ['GET'])]
-//    public function appMarried(AbobaRepository $abobaRepository, WeatherService $weatherService): Response
-//    {
-//        $abobas = $abobaRepository->findMarried();
-//        $temp = $weatherService->getCurrentTemperature();
-//
-//        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
-//    }
-//
-//    #[Route('/not_married', name: 'app_not_married', methods: ['GET'])]
-//    public function appNotMarried(AbobaRepository $abobaRepository, WeatherService $weatherService): Response
-//    {
-//        $abobas = $abobaRepository->findNotMarried();
-//        $temp = $weatherService->getCurrentTemperature();
-//
-//        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
-//    }
 }
 
