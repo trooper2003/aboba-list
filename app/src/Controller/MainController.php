@@ -38,5 +38,23 @@ class MainController extends AbstractController
 
         return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
     }
+
+    #[Route('/married', name: 'app_married', methods: ['GET'])]
+    public function appMarried(AbobaRepository $abobaRepository, WeatherService $weatherService): Response
+    {
+        $abobas = $abobaRepository->findMarried();
+        $temp = $weatherService->getCurrentTemperature();
+
+        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
+    }
+
+    #[Route('/not_married', name: 'app_not_married', methods: ['GET'])]
+    public function appNotMarried(AbobaRepository $abobaRepository, WeatherService $weatherService): Response
+    {
+        $abobas = $abobaRepository->findNotMarried();
+        $temp = $weatherService->getCurrentTemperature();
+
+        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
+    }
 }
 

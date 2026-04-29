@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Aboba;
+use App\Entity\MarriedStatusEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,27 @@ class AbobaRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Aboba::class);
+    }
+
+    /**
+     * @return Aboba[] Returns array of married Abobe objects
+     */
+    public function findMarried()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.marriedStatus = :married')
+            ->setParameter('married', MarriedStatusEnum::MARRIED)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findNotMarried()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.marriedStatus = :married')
+            ->setParameter('married', MarriedStatusEnum::NOT_MARRIED)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
