@@ -68,7 +68,7 @@ class Aboba
 
     public function getMarriedStatusString(): string
     {
-        return $this->marriedStatus->value;
+        return $this->marriedStatus->getRussian();
     }
 
     public function getMarriedStatusFilename(): string
