@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\MarriedStatusEnum;
 use App\Repository\AbobaRepository;
 use App\Repository\TestTableRepository;
+use App\Service\AbobaService;
 use App\Service\WeatherService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,15 +33,11 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
     #[Route('/{marriedStatus}', name: 'app_home_page_filter', requirements:['marriedStatus' => 'married|not_married'], methods: ['GET'])]
     public function appHomePage(
-        AbobaRepository $abobaRepository,
+        AbobaService $abobaService,
         WeatherService $weatherService,
         ?MarriedStatusEnum $marriedStatus = null,
     ): Response {
-        $abobas = match ($marriedStatus) {
-            MarriedStatusEnum::NOT_MARRIED => $abobaRepository->findNotMarried(),
-            MarriedStatusEnum::MARRIED => $abobaRepository->findMarried(),
-            null => $abobaRepository->findAll(),
-        };
+        $abobas = $abobaService->getByMarriedStatus($marriedStatus);
         $temp = $weatherService->getCurrentTemperature();
 
         return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
