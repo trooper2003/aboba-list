@@ -32,8 +32,8 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
     #[Route('/list/{marriedStatus}', name: 'app_home_page_filter', methods: ['GET'])]
     public function appHomePage(
-        AbobaRepository    $abobaRepository,
-        WeatherService     $weatherService,
+        AbobaRepository $abobaRepository,
+        WeatherService $weatherService,
         ?MarriedStatusEnum $marriedStatus = null,
     ): Response {
         $abobas = match ($marriedStatus) {
