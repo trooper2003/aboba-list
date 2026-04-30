@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Aboba;
 use App\Entity\MarriedStatusEnum;
+use App\Factory\AbobaFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -37,5 +38,7 @@ class AppFixtures extends Fixture
         $manager->persist($aboba3);
 
         $manager->flush();
+
+        AbobaFactory::createMany(10);
     }
 }
