@@ -30,7 +30,7 @@ class MainController extends AbstractController
 //    }
 
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
-    #[Route('/list/{marriedStatus}', name: 'app_home_page_filter', methods: ['GET'])]
+    #[Route('/{marriedStatus}', name: 'app_home_page_filter', requirements:['marriedStatus' => 'married|not_married'], methods: ['GET'])]
     public function appHomePage(
         AbobaRepository $abobaRepository,
         WeatherService $weatherService,
