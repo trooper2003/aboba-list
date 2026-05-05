@@ -35,11 +35,11 @@ class MainController extends AbstractController
         AbobaService $abobaService,
         WeatherService $weatherService,
         #[MapQueryParameter] ?MarriedStatusEnum $marriedStatus = null,
+        #[MapQueryParameter] int $page = 1,
     ): Response {
-        $abobas = $abobaService->getByMarriedStatus($marriedStatus);
         $temp = $weatherService->getCurrentTemperature();
+        $abobaPaginator = $abobaService->getByMarriedStatusPaginated($marriedStatus, $page);
 
-        return $this->render('app/homepage.html.twig', ['aboba' => $abobas, 'temp' => $temp]);
+        return $this->render('app/homepage.html.twig', ['aboba' => $abobaPaginator, 'temp' => $temp]);
     }
 }
-

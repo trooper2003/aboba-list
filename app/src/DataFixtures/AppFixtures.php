@@ -33,6 +33,6 @@ class AppFixtures extends Fixture
             'createdAt' => new \DateTimeImmutable('2026-09-01'),
         ]);
 
-        AbobaFactory::createMany(10);
+        AbobaFactory::createMany(20);
     }
 }

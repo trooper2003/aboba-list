@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\MarriedStatusEnum;
 use App\Repository\AbobaRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 readonly class AbobaService
 {
@@ -21,5 +22,10 @@ readonly class AbobaService
             return $this->abobaRepository->findByMarriedStatus($marriedStatus);
         }
         return $this->getAll();
+    }
+
+    public function getByMarriedStatusPaginated(?MarriedStatusEnum $marriedStatus, int $page, int $limit = 10): Paginator
+    {
+        return $this->abobaRepository->findByMarriedStatusPaginated($marriedStatus, $page, $limit);
     }
 }

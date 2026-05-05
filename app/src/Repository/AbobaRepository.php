@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Aboba;
 use App\Entity\MarriedStatusEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,6 +25,22 @@ class AbobaRepository extends ServiceEntityRepository
     public function findByMarriedStatus(MarriedStatusEnum $marriedStatus): array
     {
         return $this->findBy(['marriedStatus' => $marriedStatus], ['createdAt' => 'DESC']);
+    }
+
+    public function findByMarriedStatusPaginated(?MarriedStatusEnum $marriedStatus, int $page, int $limit = 10): Paginator
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        if ($marriedStatus !== null)
+        {
+            $qb->andWhere('a.marriedStatus = :marriedStatus')
+            ->setParameter('marriedStatus', $marriedStatus);
+        }
+
+        return new Paginator($qb);
     }
 
     public function findAllOrdered(): array
