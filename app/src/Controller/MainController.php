@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\MarriedStatusEnum;
-use App\Repository\AbobaRepository;
 use App\Repository\TestTableRepository;
 use App\Service\AbobaService;
 use App\Service\WeatherService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
 class MainController extends AbstractController
@@ -31,11 +31,10 @@ class MainController extends AbstractController
 //    }
 
     #[Route('/', name: 'app_home_page', methods: ['GET'])]
-    #[Route('/{marriedStatus}', name: 'app_home_page_filter', requirements:['marriedStatus' => 'married|not_married'], methods: ['GET'])]
     public function appHomePage(
         AbobaService $abobaService,
         WeatherService $weatherService,
-        ?MarriedStatusEnum $marriedStatus = null,
+        #[MapQueryParameter] ?MarriedStatusEnum $marriedStatus = null,
     ): Response {
         $abobas = $abobaService->getByMarriedStatus($marriedStatus);
         $temp = $weatherService->getCurrentTemperature();

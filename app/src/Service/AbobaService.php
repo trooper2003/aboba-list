@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use App\Entity\Aboba;
 use App\Entity\MarriedStatusEnum;
 use App\Repository\AbobaRepository;
 
@@ -12,12 +11,15 @@ readonly class AbobaService
         private AbobaRepository $abobaRepository,
     ){}
 
-    public function getByMarriedStatus($marriedStatus){
-        return match($marriedStatus){
-            MarriedStatusEnum::NOT_MARRIED => $this->abobaRepository->findNotMarried(),
-            MarriedStatusEnum::MARRIED => $this->abobaRepository->findMarried(),
-            null => $this->abobaRepository->findAll(),
-        };
+    public function getAll(): array
+    {
+        return $this->abobaRepository->findAllOrdered();
     }
-
+    public function getByMarriedStatus(?MarriedStatusEnum $marriedStatus): array
+    {
+        if ($marriedStatus !== null) {
+            return $this->abobaRepository->findByMarriedStatus($marriedStatus);
+        }
+        return $this->getAll();
+    }
 }

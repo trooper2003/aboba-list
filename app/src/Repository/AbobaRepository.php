@@ -20,22 +20,15 @@ class AbobaRepository extends ServiceEntityRepository
     /**
      * @return Aboba[] Returns array of married Abobe objects
      */
-    public function findMarried()
+
+    public function findByMarriedStatus(MarriedStatusEnum $marriedStatus): array
     {
-        return $this->createQueryBuilder('a')
-            ->where('a.marriedStatus = :married')
-            ->setParameter('married', MarriedStatusEnum::MARRIED)
-            ->getQuery()
-            ->getResult();
+        return $this->findBy(['marriedStatus' => $marriedStatus], ['createdAt' => 'DESC']);
     }
 
-    public function findNotMarried()
+    public function findAllOrdered(): array
     {
-        return $this->createQueryBuilder('a')
-            ->where('a.marriedStatus = :married')
-            ->setParameter('married', MarriedStatusEnum::NOT_MARRIED)
-            ->getQuery()
-            ->getResult();
+        return $this->findBy([], ['createdAt' => 'DESC']);
     }
 
     //    /**

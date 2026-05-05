@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Aboba;
 use App\Entity\MarriedStatusEnum;
 use App\Factory\AbobaFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
