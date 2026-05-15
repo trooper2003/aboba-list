@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AbobaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug;
+use Gedmo\Mapping\Annotation\Timestampable;
 
 #[ORM\Entity(repositoryClass: AbobaRepository::class)]
 class Aboba
@@ -13,7 +15,7 @@ class Aboba
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
     private ?string $name = null;
 
     #[ORM\Column]
@@ -23,7 +25,16 @@ class Aboba
     private ?MarriedStatusEnum $marriedStatus = null;
 
     #[ORM\Column]
+    #[Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    #[Timestampable(on: 'update')]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(unique: true)]
+    #[Slug(fields: ['name'])]
+    private ?string $slug = null;
 
     public function getId(): ?int
     {
@@ -87,6 +98,30 @@ class Aboba
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
