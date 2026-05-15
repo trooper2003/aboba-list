@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AbobaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug;
+use Gedmo\Mapping\Annotation\Timestampable;
 
 #[ORM\Entity(repositoryClass: AbobaRepository::class)]
 class Aboba
@@ -23,12 +25,15 @@ class Aboba
     private ?MarriedStatusEnum $marriedStatus = null;
 
     #[ORM\Column]
+    #[Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(unique: true)]
+    #[Slug(fields: ['name'])]
     private ?string $slug = null;
 
     public function getId(): ?int
